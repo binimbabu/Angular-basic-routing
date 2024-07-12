@@ -1,27 +1,19 @@
-# Routing
+Routing
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.2.
+Routing is handling a set of pages with url’s, when the url’s changes automatically the route component will change. All the routing can be handled only by one component thats why angular is called single page application.
 
-## Development server
+<router-outlet></router-oulet>
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+router-outlet is a placeholder it is used when it hits a particular url in the browser which is registered in the app.routing,module.ts it goes to component mentioned in the url. All the component deatils will be loaded when hitting a url in the browser (where the url is registered in  app.routing,module.ts ) by giving router-outlet.
 
-## Code scaffolding
+In the app-routing.module.ts if we give the below code in the routes
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+{ path: '**', component: NotfoundComponent }
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+If a url is entered in the browser that does not match any url registered in  app-routing.module.ts then the above code will give  render NotfoundComponent since the path is given ‘**’.
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+{ path: '', redirectTo: '/login', pathMatch: 'full' },
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+When path is given ‘’ then when we just enter localhost:4200 with out any url mentioned int the app.routing.module.ts then it will redirect to login and the pathMatch is full because it has to exactly match to the redirect value ( i.e  redirectTo: '/login'  ) that is /login.
